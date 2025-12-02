@@ -7,20 +7,20 @@
 
 `esp_lcd` allows user to add their own panel drivers in the project scope (i.e. panel driver can live outside of esp-idf), so that the upper layer code like LVGL porting code can be reused without any modifications, as long as user-implemented panel driver follows the interface defined in the `esp_lcd` component.
 
-This example shows how to use GC9A01 or ILI9341 display driver from Component manager in esp-idf project. These components are using API provided by `esp_lcd` component. This example will draw a fancy dash board with the LVGL library.
+This example shows how to use CYD 3.5inch ST7789 display driver from Component manager in esp-idf project. These components are using API provided by `esp_lcd` component. This example will use lv_demo_benchmark() to benchmark the system.
 
 This example uses the [esp_timer](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/esp_timer.html) to generate the ticks needed by LVGL and uses a dedicated task to run the `lv_timer_handler()`. Since the LVGL APIs are not thread-safe, this example uses a mutex which be invoked before the call of `lv_timer_handler()` and released after it. The same mutex needs to be used in other tasks and threads around every LVGL (lv_...) related function call and code. For more porting guides, please refer to [LVGL porting doc](https://docs.lvgl.io/master/porting/index.html).
 
-## Touch controller STMPE610
+## Touch controller XPT2046
 
-In this example you can enable touch controller STMPE610 connected via SPI. The SPI connection is shared with LCD screen.
+In this example you can enable touch controller XPT2046 connected via SPI. The SPI connection is shared with LCD screen.
 
 ## How to use the example
 
 ### Hardware Required
 
 * An ESP development board
-* An GC9A01 or ILI9341 LCD panel, with SPI interface (with/without STMPE610 SPI touch)
+* An CYD 3.5inch, with SPI interface (with/without XPT2046 SPI touch)
 * An USB cable for power supply and programming
 
 ### Hardware Connection
@@ -28,7 +28,7 @@ In this example you can enable touch controller STMPE610 connected via SPI. The 
 The connection between ESP Board and the LCD is as follows:
 
 ```
-       ESP Board                       GC9A01/ILI9341 Panel + TOUCH
+       ESP Board                       CYD 3.5inch Panel + TOUCH
 ┌──────────────────────┐              ┌────────────────────┐
 │             GND      ├─────────────►│ GND                │
 │                      │              │                    │
@@ -46,14 +46,16 @@ The connection between ESP Board and the LCD is as follows:
 │                      │              │                    │
 │             LCD CS   ├─────────────►│ LCD CS             │
 │                      │              │                    │
-│             TOUCH CS ├─────────────►│ TOUCH CS           │
+│             TP CS    ├─────────────►│ TOUCH CS           │
+│                      │              │                    │
+│             TP INT   ├─────────────►│ TOUCH INTERUPT     │
 │                      │              │                    │
 │             BK_LIGHT ├─────────────►│ BLK                │
 └──────────────────────┘              └────────────────────┘
 ```
 
-The GPIO number used by this example can be changed in [lvgl_example_main.c](main/spi_lcd_touch_example_main.c).
-Especially, please pay attention to the level used to turn on the LCD backlight, some LCD module needs a low level to turn it on, while others take a high level. You can change the backlight level macro `EXAMPLE_LCD_BK_LIGHT_ON_LEVEL` in [lvgl_example_main.c](main/spi_lcd_touch_example_main.c).
+The GPIO number used by this example can be changed in [main.c](main/_main.c).
+Especially, please pay attention to the level used to turn on the LCD backlight, some LCD module needs a low level to turn it on, while others take a high level. You can change the backlight level macro `EXAMPLE_LCD_BK_LIGHT_ON_LEVEL` in [main.c](main/main.c).
 
 ### Build and Flash
 
@@ -95,6 +97,6 @@ I (619) example: Display LVGL Meter Widget
 ## Troubleshooting
 
 * Why the LCD doesn't light up?
-  * Check the backlight's turn-on level, and update it in `EXAMPLE_LCD_BK_LIGHT_ON_LEVEL`
+  * Check the backlight's turn-on level, and update it in `LCD_BK_LIGHT_ON_LEVEL`
 
 For any technical queries, please open an [issue] (https://github.com/espressif/esp-idf/issues) on GitHub. We will get back to you soon.
