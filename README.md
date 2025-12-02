@@ -71,25 +71,66 @@ See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/l
 
 ```bash
 ...
-I (409) cpu_start: Starting scheduler on APP CPU.
-I (419) example: Turn off LCD backlight
-I (419) gpio: GPIO[2]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
-I (429) example: Initialize SPI bus
-I (439) example: Install panel IO
-I (439) gpio: GPIO[5]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
-I (449) example: Install GC9A01 panel driver
-I (459) gpio: GPIO[3]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
-I (589) gpio: GPIO[0]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
-I (589) example: Initialize touch controller STMPE610
-I (589) STMPE610: TouchPad ID: 0x0811
-I (589) STMPE610: TouchPad Ver: 0x03
-I (599) example: Turn on LCD backlight
-I (599) example: Initialize LVGL library
-I (609) example: Register display driver to LVGL
-I (619) example: Install LVGL tick timer
-I (619) example: Starting LVGL task
-I (619) example: Display LVGL animation
-I (619) example: Display LVGL Meter Widget
+I (29) boot: ESP-IDF v5.5.1 2nd stage bootloader
+I (29) boot: compile time Dec  2 2025 14:38:02
+I (29) boot: Multicore bootloader
+I (31) boot: chip revision: v3.1
+I (33) boot.esp32: SPI Speed      : 80MHz
+I (37) boot.esp32: SPI Mode       : DIO
+I (41) boot.esp32: SPI Flash Size : 4MB
+I (44) boot: Enabling RNG early entropy source...
+I (49) boot: Partition Table:
+I (51) boot: ## Label            Usage          Type ST Offset   Length
+I (58) boot:  0 nvs              WiFi data        01 02 00009000 00005000
+I (64) boot:  1 otadata          OTA data         01 00 0000e000 00002000
+I (71) boot:  2 app0             OTA app          00 10 00010000 00300000
+I (77) boot:  3 spiffs           Unknown data     01 82 00310000 000f0000
+I (84) boot: End of partition table
+I (87) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=5b1b8h (373176) map
+I (200) esp_image: segment 1: paddr=0006b1e0 vaddr=3ffb0000 size=02844h ( 10308) load
+I (203) esp_image: segment 2: paddr=0006da2c vaddr=40080000 size=025ech (  9708) load
+I (207) esp_image: segment 3: paddr=00070020 vaddr=400d0020 size=492e8h (299752) map
+I (296) esp_image: segment 4: paddr=000b9310 vaddr=400825ec size=0da4ch ( 55884) load
+I (314) esp_image: segment 5: paddr=000c6d64 vaddr=50000000 size=00020h (    32) load
+I (322) boot: Loaded app from partition at offset 0x10000
+I (322) boot: Disabling RNG early entropy source...
+I (335) cpu_start: Multicore app
+I (343) cpu_start: Pro cpu start user code
+I (343) cpu_start: cpu freq: 240000000 Hz
+I (343) app_init: Application information:
+I (343) app_init: Project name:     CYD_3.5inch_ST7796_320x240
+I (349) app_init: App version:      1
+I (352) app_init: Compile time:     Dec  2 2025 14:45:07
+I (357) app_init: ELF file SHA256:  6426abe7b...
+I (361) app_init: ESP-IDF:          v5.5.1
+I (365) efuse_init: Min chip rev:     v0.0
+I (369) efuse_init: Max chip rev:     v3.99
+I (373) efuse_init: Chip rev:         v3.1
+I (377) heap_init: Initializing. RAM available for dynamic allocation:
+I (383) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM
+I (388) heap_init: At 3FFCA420 len 00015BE0 (86 KiB): DRAM
+I (393) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM
+I (399) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM
+I (404) heap_init: At 40090038 len 0000FFC8 (63 KiB): IRAM
+I (410) spi_flash: detected chip: generic
+I (413) spi_flash: flash io: dio
+I (0) main_task: Started on CPU1
+I (10) main_task: Calling app_main()
+I (10) example: Turn off LCD backlight
+I (10) example: Initialize SPI bus
+I (10) example: Install panel IO
+I (10) example: Install ST7796 panel driver
+I (10) st7796: version: 1.3.6
+I (20) st7796_general: LCD panel create success, version: 1.3.6
+I (240) example: Turn on LCD backlight
+I (240) example: Initialize LVGL library
+I (240) example: Install LVGL tick timer
+I (240) example: Register io panel event callback for LVGL flush ready notification
+I (240) example: Initialize touch controller XPT2046
+I (250) example: Create LVGL task
+I (250) example: Starting LVGL task
+I (290) example: Display LVGL Meter Widget
+I (290) main_task: Returned from app_main()
 ...
 ```
 
